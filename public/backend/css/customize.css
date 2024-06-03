@@ -1,0 +1,127 @@
+/* Đặt màu sắc và kiểu dáng cho thông báo lỗi */
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    font-style: italic;
+    margin-left: 10px;
+}
+
+
+/* Thiết lập khoảng cách trên và bên cho phần tử */
+
+.mt20 {
+    margin: 25px 20px 0 20px;
+}
+
+
+/* Thiết lập nền trong suốt cho breadcrumb */
+
+.breadcrumb {
+    background-color: unset;
+}
+
+
+/* Đặt kích thước cho hình ảnh */
+
+.image img {
+    width: 50px;
+    height: 50px;
+}
+
+
+/* Thiết lập độ rộng tối thiểu cho strong trong bảng */
+
+table strong {
+    display: inline-block;
+    min-width: 100px;
+}
+
+
+/* Thiết lập cỡ chữ cho bảng */
+
+table {
+    font-size: 13px;
+}
+
+
+/* Căn giữa các phần tử trong bảng theo chiều dọc */
+
+.table>thead>tr>th,
+.table>tbody>tr>th,
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>tbody>tr>td,
+.table>tfoot>tr>td {
+    vertical-align: middle;
+}
+
+
+/* Thiết lập kiểu dáng và căn chỉnh cho filer-warpper */
+
+.filer-warpper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 10px;
+}
+
+.filer-warpper .perpage,
+.filer-warpper .action {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.filer-warpper .spacer {
+    flex-grow: 1;
+    /* Đẩy các phần tử ra xa nhau */
+    min-width: 200px;
+    /* Đảm bảo khoảng cách tối thiểu khi responsive */
+}
+
+.filer-warpper .action .input-group,
+.filer-warpper .action .btn {
+    display: flex;
+    align-items: center;
+}
+
+.filer-warpper .action .input-group input[type="text"] {
+    width: 200px;
+    margin-right: 0.5rem;
+}
+
+.filer-warpper .action .input-group button {
+    margin-left: 0.5rem;
+}
+
+.filer-warpper .action .btn-primary {
+    display: inline-block;
+}
+
+.input-group-append {
+    margin-left: -30px;
+}
+
+.search-user {
+    border-radius: 0 0.30rem 0.30rem 0;
+}
+
+
+/* Media query to adjust for different screen sizes */
+
+@media (min-width: 768px) {
+    .filer-warpper {
+        gap: 2rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .filer-warpper {
+        gap: 3rem;
+    }
+}
+
+.box .box {
+    box-shadow: inset;
+}
