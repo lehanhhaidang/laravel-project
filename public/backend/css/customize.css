@@ -121,7 +121,3 @@ table {
         gap: 3rem;
     }
 }
-
-.box .box {
-    box-shadow: inset;
-}

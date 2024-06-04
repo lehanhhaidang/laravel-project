@@ -1,11 +1,11 @@
 <?php
 return [
    'index' => [
-    'title' =>'User Management',
-    'name' => 'User List'
+    'title' =>'Quản lý thành viên',
+    'name' => 'Danh sách thành viên'
    ],
    'create' => [
-     'title' => 'Add new user',
+     'title' => 'Thêm thành viên',
      'head' => 'sdfasdf'
    ]
 ];

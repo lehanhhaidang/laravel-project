@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Services\Interfaces\UserServiceInterface as UserService;
-
+use App\Repositories\Interfaces\ProvinceRepositoryInterface as ProvinceRepository;
 class UserController extends Controller
 {
     protected $userService;
@@ -32,6 +32,9 @@ class UserController extends Controller
 
     public function create()
     {
+        $location = [
+            'provices' =>
+        ];
         $config['seo'] = config('apps.user');
         $template = 'backend.user.component.create';
         return view('backend.dashboard.layout',compact(

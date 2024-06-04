@@ -12,9 +12,11 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Register any application services.
      */
+
     public $serviceBinding =[
         'App\Services\Interfaces\UserServiceInterface' => 'App\Services\UserService',
         'App\Repositories\Interfaces\UserRepositoryInterface' => 'App\Repositories\UserRepository',
+        'App\Repositories\Interfaces\ProvinceRepositoryInterface' => 'App\Repositories\ProvinceRepository'
     ];
 
     public function register(): void
