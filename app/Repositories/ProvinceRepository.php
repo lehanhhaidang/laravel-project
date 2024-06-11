@@ -2,18 +2,23 @@
 
 namespace App\Repositories;
 
-use App\Models\Province;
 use App\Repositories\Interfaces\ProvinceRepositoryInterface;
-
+use App\Repositories\BaseRepository;
+use App\Models\Province;
 
 /**
  * Class UserService
  * @package App\Services
  */
-class ProvinceRepository implements ProvinceRepositoryInterface
+class ProvinceRepository extends BaseRepository implements ProvinceRepositoryInterface
 {
-    public function all()
+    protected $model;
+    public function __construct
+    (
+        Province $model
+    )
     {
-        return Province::all();
+        $this->model = $model;
     }
+
 }

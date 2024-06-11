@@ -21,7 +21,10 @@ class DatabaseSeeder extends Seeder
         //     'password' =>Hash::make('12345')
         // ]);
 
-        User::factory()->count(1000)->create();
+        // User::factory()->count(1000)->create();
 
+        $this->call([
+            UserSeeder::class
+    ]);
     }
 }
