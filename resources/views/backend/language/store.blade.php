@@ -78,8 +78,10 @@
                                         Ảnh đại diện<span class="text-danger">(*)</span>
                                     </label>
                                     <input
+                                    class="upload-image form-control"
                                     type="text"
                                     name="image"
+                                    data-type='Images'
                                     class="form-control"
                                     placeholder=""
                                     autocomplete="off"

@@ -155,8 +155,8 @@
                                     <input
                                     type="text"
                                     name="image"
-                                    class="form-control input-image"
-                                    value="{{old('image')}}"
+                                    class="form-control upload-image"
+                                    value="{{old('image', $user->image ?? '')  }}"
                                     placeholder=""
                                     data-upload="Images"
                                     >
@@ -226,7 +226,7 @@
                                     <label for="" class="control-label text-right">
                                         Địa chỉ
                                     </label>
-                                    <input type="text" name="address" value="{{old('address', (isset($user->address)) ? :'')}}" class="form-control" placeholder="" autocomplete="off">
+                                    <input type="text" name="address" value="{{old('address', $user->address ?? '')}}" class="form-control" placeholder="" autocomplete="off">
                                 </div>
                             </div>
                         </div>
@@ -236,7 +236,7 @@
                                     <label for="" class="control-label text-right">
                                         Số điện thoại
                                     </label>
-                                    <input type="text" name="phone" value="{{old('phone', (isset($user->phone)) ? :'')}}" class="form-control" placeholder="" autocomplete="off">
+                                    <input type="text" name="phone" value="{{old('phone', $user->phone ?? '')}}" class="form-control" placeholder="" autocomplete="off">
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-12">
@@ -244,7 +244,7 @@
                                     <label for="" class="control-label text-right">
                                         Ghi chú
                                     </label>
-                                    <input type="text" name="description" value="{{old('description', isset($user->description) ? :'')}}" class="form-control" placeholder="" autocomplete="off">
+                                    <input type="text" name="description" value="{{old('description', $user->description ?? '')}}" class="form-control" placeholder="" autocomplete="off">
                                 </div>
                             </div>
                         </div>

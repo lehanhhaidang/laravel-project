@@ -62,18 +62,7 @@ class UserController extends Controller
     public function create()
     {
         $provinces = $this->provinceRepository->all();
-        $config = [
-            'css' => [
-                'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css',
-            ],
-            'js' => [
-                'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js',
-                'backend/library/location.js',
-                'backend/library/finder.js',
-                'backend/plugin/ckfinder/ckfinder.js'
-
-            ]
-        ];
+        $config = $this->configData();
 
         $config['seo'] = config('apps.user');
         $config['method'] = 'create';
@@ -99,18 +88,7 @@ class UserController extends Controller
     public function edit($id){
         $user = $this->userRepository->findById($id);
         $provinces = $this->provinceRepository->all();
-        $config = [
-            'css' => [
-                'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css',
-            ],
-            'js' => [
-                'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js',
-                'backend/library/location.js',
-                'backend/library/finder.js',
-                'backend/plugin/ckfinder/ckfinder.js'
-
-            ]
-        ];
+        $config = $this->configData();
 
         $config['seo'] = config('apps.user');
         $config['method'] = 'edit';
@@ -151,5 +129,25 @@ class UserController extends Controller
         }
         flash()->success('Xóa thất bại. Vui lòng thử lại.');
         return redirect()->route('user.index');
+    }
+
+
+    private function configData(){
+        return [
+            'js' =>[
+                'backend/js/plugins/switchery/switchery.js',            
+                'backend/plugin/ckfinder_2/ckfinder.js',
+                'backend/library/finder.js',
+                'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js',
+                'backend/library/location.js',
+
+
+
+            ],
+            'css' => [
+                'backend/css/plugins/switchery/switchery.css',
+                'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css',
+            ]
+        ];
     }
 }

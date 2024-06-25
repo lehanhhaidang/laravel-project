@@ -29,7 +29,7 @@
                     />
                 </td>
                 <td>{{$user->name}}</td>
-                <td><span class="image"><img src="{{$user->image}}" alt=""></span></td>
+                <td style="width: 125px"><span class="image"><img src="{{$user->image}}" style="width:100px; height:100px"></span></td>
                 <td>{{$user->email}}</td>
                 <td>{{$user->address}}</td>
                 <td class="text-center">{{$user->user_catalogues->name}}</td>

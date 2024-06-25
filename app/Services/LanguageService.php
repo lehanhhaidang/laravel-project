@@ -147,7 +147,8 @@ class LanguageService implements LanguageServiceInterface
             'id',
             'name',
             'canonical',
-            'publish'
+            'publish',
+            'image',
         ];
     }
 

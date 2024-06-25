@@ -40,7 +40,9 @@ class UserService implements UserServiceInterface
         try{
 
             $payload = $request->except('_token','send','repassword');
-            $payload['birthday'] = $this->convertBirthdayDate($payload['birthday']);
+            if($payload['birthday'] !=null){
+                $payload['birthday'] = $this->convertBirthdayDate($payload['birthday']);
+            }
             $payload['password'] = Hash::make($payload['password']);
             Log::info('Payload:', $payload);
             $user = $this->userRepository->create($payload);
@@ -61,7 +63,9 @@ class UserService implements UserServiceInterface
         try{
 
             $payload = $request->except('_token','send');
-            $payload['birthday'] = $this->convertBirthdayDate($payload['birthday']);
+            if($payload['birthday'] !=null){
+                $payload['birthday'] = $this->convertBirthdayDate($payload['birthday']);
+            }
             $user = $this->userRepository->update($id,$payload);
             DB::commit();
             return true;
