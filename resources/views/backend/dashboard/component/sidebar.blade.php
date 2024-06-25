@@ -1,3 +1,6 @@
+@php
+$segment = request()->segment(1);
+@endphp
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
@@ -27,20 +30,27 @@
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-            aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-users-cog"></i>
-            <span>User Management</span>
+    @foreach (config('apps.module.module') as $key =>$val)    
+    <li class="nav-item {{in_array($segment,$val['name'])? 'active': ''}}">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#{{ $val['target']}}"
+            aria-expanded="true" ">
+            <i class="{{$val['icon']}}"></i>
+            <span>{{$val['title']}}</span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        @if(isset($val['subModule']))
+                
+        <div id="{{ $val['target']}}" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            @foreach ($val['subModule'] as $module)
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">User</h6>
-                <a class="collapse-item" href="{{route('user.index')}}">User Management</a>
-                {{-- <a class="collapse-item" href="{{rout('user.roles')}}">User Roles</a> --}}
+                <a class="collapse-item" href="{{ $module['route']}}">{{$module['title']}}</a>
+            @endforeach
             </div>
         </div>
+        @endif
     </li>
+    @endforeach
+ 
+    
 
     <!-- Nav Item - Utilities Collapse Menu -->
 

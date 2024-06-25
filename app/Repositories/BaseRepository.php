@@ -6,6 +6,7 @@ use App\Repositories\Interfaces\BaseRepositoryInterface;
 use Illuminate\Database\Eloquent\Model;
 
 
+
 /**
  * Class UserService
  * @package App\Services
@@ -24,18 +25,37 @@ class BaseRepository implements BaseRepositoryInterface
         array $column =['*'],
         array $condition = [],
         array $join = [],
-        int $perpage = 20,
+        array $extend = [],
+        int $perpage = 1,
+        array $relations = []
+
     )
     {
-        $query = $this->model->select($column)->where($condition);
+        $query = $this->model->select($column)->where(function($query) use ($condition){
+            if(isset($condition['keyword']) && !empty($condition['keyword'])){
+                $query->where('name','LIKE','%'.$condition['keyword'].'%');
+            }
 
+            if(isset($condition['publish'])&& $condition['publish'] != 0){
+                $query->where('publish','=', $condition['publish']);
+            }
+            return $query;
+        });
+
+        if(isset($relations) && !empty($relations)){
+            foreach ( $relations as $relation){
+                $query->withCount($relation);
+
+            }
+        }
         if(!empty($join)){
             $query->join(...$join);
         }
 
-        return $query->paginate($perpage);
+        return $query->paginate($perpage)->withQueryString()->withPath(env('APP_URL').$extend['path']);
     }
 
+    
     public function create(array $payload=[]){
         $model = $this->model->create($payload);
         return $model->fresh();
@@ -60,7 +80,9 @@ class BaseRepository implements BaseRepositoryInterface
         return $model->update($payload);
     }
 
-
+    public function updateByWhereIn($whereInField = '', array $whereIn =[], array $payload = []){
+        $this->model->whereIn($whereInField,$whereIn)->update($payload);
+    }
     public function delete($id =0){
         return  $this->findById($id)->delete();
 

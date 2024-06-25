@@ -23,7 +23,7 @@ class StoreUserRequest extends FormRequest
     {
         return [
             'email'=>'required|string|email|unique:users|max:191',
-            'fullname' => 'required|string',
+            'name' => 'required|string',
             // 'group_user' => 'required|integer|gt:0',
             'birthday' => 'required',
             'password'=>'required|string|min:6',
@@ -41,7 +41,7 @@ class StoreUserRequest extends FormRequest
             ],
 
             'password.required' => "Bạn chưa nhập password",
-            'fullname.required' => 'Bạn phải nhập họ tên',
+            'name.required' => 'Bạn phải nhập họ tên',
             // 'group_user.required' => 'Bạn phải chọn nhóm người dùng',
             'birthday.required' => 'Bạn phải chọn ngày sinh',
             'repassword' =>[

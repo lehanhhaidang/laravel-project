@@ -74,7 +74,8 @@
     
     .filer-warpper .action .input-group input[type="text"] {
         width: 200px;
-        margin-right: 0.5rem;
+        margin-right: 22.2px;
+        border-radius: inherit;
     }
     
     .filer-warpper .action .input-group button {
@@ -120,4 +121,29 @@
         border: 1px solid #d1d3e2;
         border-radius: .35rem;
         transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+    
+    .active-bg {
+        background: #ffc !important;
+    }
+    
+    #checkAll {
+        width: 15px;
+        height: 15px;
+    }
+    
+    .checkBoxItem {
+        width: 15px;
+        height: 15px;
+    }
+    
+    .switchery-small {
+        border-radius: 20px;
+        height: 20px;
+        width: 33px;
+    }
+    
+    .switchery-small>small {
+        height: 20px;
+        width: 20px;
     }

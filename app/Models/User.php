@@ -19,7 +19,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'email',
-        'fullname',
+        'name',
         'user_catalogue_id',
         'birthday',
         'password',
@@ -30,6 +30,7 @@ class User extends Authenticatable
         'address',
         'phone',
         'description',
+        'publish',
     ];
 
     /**
@@ -53,5 +54,10 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function user_catalogues()
+    {
+        return $this->belongsTo(UserCatalogue::class,'user_catalogue_id','id');
     }
 }

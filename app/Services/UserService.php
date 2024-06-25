@@ -23,18 +23,15 @@ class UserService implements UserServiceInterface
         $this->userRepository = $userRepository;
     }
 
-    public function paginate()
+    public function paginate($request)
     {
         // $users = $this->userRepository->getAllPaginate();
+        $condition['keyword'] = addslashes($request->input('keyword'));
+        $condition['publish'] =  $request->integer('publish');
+        $perPage = $request->integer('perpage');
+        
         $users = $this->userRepository
-        ->pagination([
-            'id',
-            'fullname',
-            'image',
-            'email',
-            'address',
-            'publish'
-        ]);
+        ->pagination($this->paginateSelect(), $condition, [], ['path' => 'user/index'], $perPage);
         return $users;
     }
 
@@ -57,6 +54,8 @@ class UserService implements UserServiceInterface
 
     }
 
+    
+
     public function update($id,$request){
         DB::beginTransaction();
         try{
@@ -72,6 +71,35 @@ class UserService implements UserServiceInterface
             return false;
         }
 
+    }
+
+    public function updateStatus($post = []){
+        DB::beginTransaction();
+        try{
+            $payload[$post['field']] = (($post['value'] ==1 )?2:1);
+            $user = $this->userRepository->update($post['modelId'],$payload);
+            DB::commit();
+            return true;
+        }catch(\Exception $e){
+            DB::rollback();
+            echo $e->getMessage();die();
+            return false;
+         }
+        
+    }
+
+    public function updateStatusAll($post =[]){
+        DB::beginTransaction();
+        try{
+            $payload[$post['field']] = $post['value'];
+            $flag = $this->userRepository->updateByWhereIn('id',$post['id'],$payload);
+            DB::commit();
+            return true;
+        }catch(\Exception $e){
+            DB::rollback();
+            echo $e->getMessage();die();
+            return false;
+         }
     }
 
     private function convertBirthdayDate($birthday = ''){
@@ -94,6 +122,17 @@ class UserService implements UserServiceInterface
         }
     }
 
+    private function paginateSelect(){
+        return [
+            'id',
+            'name',
+            'image',
+            'email',
+            'address',
+            'publish',
+            'user_catalogue_id',
+        ];
+    }
 
 
 

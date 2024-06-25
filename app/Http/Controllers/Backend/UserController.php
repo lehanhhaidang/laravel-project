@@ -31,22 +31,27 @@ class UserController extends Controller
     }
 
 
-    public function index(){
-        $users = $this->userService->paginate(); //Tách phương thức ra, sử dụng UserService và UserServiceInterface
+    public function index(Request $request){
+        $users = $this->userService->paginate($request); //Tách phương thức ra, sử dụng UserService và UserServiceInterface
         // $users = User::paginate(15); //Phương thức cũ, có thể sử dụng
         $config = [
                 'js' =>[
                     'backend/js/plugins/switchery/switchery.js',
+                    'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js',
+
+
 
                 ],
                 'css' => [
+                    'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css',
+
                     'backend/css/plugins/switchery/switchery.css'
                 ]
             ];
 
 
         $config['seo'] = config('apps.user');
-        $template = 'backend.user.index';
+        $template = 'backend.user.user.index';
         return view('backend.dashboard.layout',compact(
             'template',
             'config',
@@ -72,7 +77,7 @@ class UserController extends Controller
 
         $config['seo'] = config('apps.user');
         $config['method'] = 'create';
-        $template = 'backend.user.store';
+        $template = 'backend.user.user.store';
         return view('backend.dashboard.layout',compact(
             'template',
             'config',
@@ -109,7 +114,7 @@ class UserController extends Controller
 
         $config['seo'] = config('apps.user');
         $config['method'] = 'edit';
-        $template = 'backend.user.store';
+        $template = 'backend.user.user.store';
         return view('backend.dashboard.layout',compact(
             'template',
             'config',
@@ -131,7 +136,7 @@ class UserController extends Controller
     public function delete($id){
         $config['seo'] = config('apps.user');
         $user = $this->userRepository->findById($id);
-        $template = 'backend.user.delete';
+        $template = 'backend.user.user.delete';
         return view('backend.dashboard.layout',compact(
             'template',
             'user',
